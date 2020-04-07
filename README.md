@@ -2,7 +2,7 @@
 
 Built this to help my kids' school do distance learning due to COVID-19 2020.
 
-Not a lot too it, push <SPACE> to talk while muted in Google Meet.
+Not a lot to it, push <kbd>space</kbd> to talk while muted in Google Meet.
 
 ## Acknowledgements
 
