@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Google Meet Push To Talk",
-  "version": "0.0.3",
-  "description": "Push space to talk instead of fumbling around trying to mute and unmute",
+  "version": "0.0.4",
+  "description": "Hold <space> in Google Meet to talk instead of fumbling around trying to mute and unmute",
   "icons": {
     "16": "icons/monkey16.png",
     "48": "icons/monkey48.png",

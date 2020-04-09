@@ -1,1 +1,1 @@
-zip -r releases/`jq -r '.version' manifest.json`.zip * --exclude releases
+zip --exclude ./releases/ --exclude ./releases/* -r releases/`jq -r '.version' manifest.json`.zip *
