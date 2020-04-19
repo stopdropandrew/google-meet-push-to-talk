@@ -19,7 +19,6 @@ const editButton = document.getElementById("hotkey_edit"),
 let storedHotkey, currentHotkey;
 
 chrome.storage.sync.get("hotkey", ({ hotkey }) => {
-  console.log("Value currently is " + hotkey);
   storedHotkey = hotkey || ["space"];
   hotkeyDisplay.innerHTML = displayHotkey(storedHotkey);
 });
