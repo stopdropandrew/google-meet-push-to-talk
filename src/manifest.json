@@ -10,7 +10,13 @@
   "content_scripts": [
     {
       "matches": ["https://meet.google.com/*"],
-      "js": ["ptt.js"]
+      "js": ["ptt.bundle.js"]
     }
-  ]
+  ],
+  "background": { "scripts": ["background.bundle.js"], "persistent": false },
+  "page_action": {
+    "default_popup": "options.html"
+  },
+  "options_page": "options.html",
+  "permissions": ["storage", "declarativeContent"]
 }
