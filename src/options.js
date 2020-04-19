@@ -1,6 +1,7 @@
 import "./css/options.css";
 import hotkeys from "hotkeys-js";
 import keycode from "keycode";
+import { displayHotkey } from "./utils/keycode";
 
 const modifierMap = {
   16: "shiftKey",
@@ -11,28 +12,44 @@ const modifierMap = {
 
 const editButton = document.getElementById("hotkey_edit"),
   saveButton = document.getElementById("hotkey_save"),
-  hotkey = document.getElementById("hotkey"),
+  cancelButton = document.getElementById("hotkey_cancel"),
+  hotkeyDisplay = document.getElementById("hotkey"),
   hotkeyLabel = document.querySelector('label[for="hotkey"]');
+
+let storedHotkey, currentHotkey;
+
+chrome.storage.sync.get("hotkey", ({ hotkey }) => {
+  console.log("Value currently is " + hotkey);
+  storedHotkey = hotkey || ["space"];
+  hotkeyDisplay.innerHTML = displayHotkey(storedHotkey);
+});
 
 editButton.addEventListener("click", () => {
   hotkeyLabel.classList.add("unlocked");
 
   hotkeys("*", (event) => {
     event.preventDefault();
-    hotkey.innerHTML = "";
+    hotkeyDisplay.innerHTML = "";
 
-    const codes = hotkeys.getPressedKeyCodes();
-    hotkey.innerHTML = codes
-      .map((code) => {
-        const keyname = code === 91 ? "command" : keycode(code);
-        return `<kbd>${keyname}</kbd>`;
-      })
-      .join(" + ");
+    currentHotkey = hotkeys
+      .getPressedKeyCodes()
+      .map((code) => (code === 91 ? "command" : keycode(code)));
+
+    hotkeyDisplay.innerHTML = displayHotkey(currentHotkey);
   });
 });
 
 saveButton.addEventListener("click", () => {
+  chrome.storage.sync.set({ hotkey: currentHotkey }, () => {
+    hotkeyLabel.classList.remove("unlocked");
+    hotkeys.unbind("*");
+  });
+});
+
+cancelButton.addEventListener("click", () => {
   hotkeyLabel.classList.remove("unlocked");
 
   hotkeys.unbind("*");
+
+  hotkeyDisplay.innerHTML = displayHotkey(storedHotkey);
 });

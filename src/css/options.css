@@ -1,5 +1,5 @@
 h1 {
-  width: 450px;
+  width: 550px;
 }
 
 kbd {
@@ -70,18 +70,18 @@ button {
   color: #fff;
 }
 
-label[for="hotkey"] button#hotkey_edit {
+label[for="hotkey"] button.unlocked {
   display: inline;
 }
 
-label[for="hotkey"] button#hotkey_save {
+label[for="hotkey"] button.locked {
   display: none;
 }
 
-label[for="hotkey"].unlocked button#hotkey_edit {
+label[for="hotkey"].unlocked button.unlocked {
   display: none;
 }
 
-label[for="hotkey"].unlocked button#hotkey_save {
+label[for="hotkey"].unlocked button.locked {
   display: inline;
 }
