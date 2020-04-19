@@ -1,8 +1,14 @@
 import codeToString from "keycode";
 
 class Hotkey {
-  constructor(keys) {
-    this.keys = keys;
+  constructor({
+    keyCode,
+    ctrlKey = false,
+    altKey = false,
+    shiftKey = false,
+    metaKey = false,
+  }) {
+    this.keys = { keyCode, ctrlKey, altKey, shiftKey, metaKey };
   }
 
   static default() {
