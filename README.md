@@ -4,7 +4,7 @@ Simple extension that allows you to mute and unmute yourself with a key press in
 
 ## 📚 DOCUMENTATION
 
-🎉 Install the [Chrome extension](https://chrome.google.com/webstore/detail/google-meet-push-to-talk/pgpidfocdapogajplhjofamgeboonmmj)  
+🎉 Install the [Chrome extension](https://chrome.google.com/webstore/detail/google-meet-push-to-talk/pgpidfocdapogajplhjofamgeboonmmj) (reload your Meet tab if you have one open)  
 🔕 Mute/unmute: Quick push <kbd>space</kbd>  
 🔈 Hold <kbd>space</kbd> (default) to talk, release to go back to mute  
 ⌨️ Configure your own hotkey if you don't like <kbd>space</kbd>  
@@ -28,13 +28,7 @@ We don't store your data, period.
 
 ## 📦 CHANGELOG
 
-### v1.0.1 - 2020-04-19
-
-#### Fixed
-
-- Default hotkey wasn't loading after upgrading
-
-### v1.0.0 - 2020-04-19
+### v1.0.2 - 2020-04-19
 
 #### Added
 
@@ -42,8 +36,10 @@ We don't store your data, period.
 
 #### Fixed
 
+- Default hotkey wasn't loading after upgrading
 - Transpiling for older version of Chrome
 - Only disable toggling when textarea or input is targeted
+- Non-stop toggling on camera control
 
 ### v0.0.3 - 2020-04-08
 
