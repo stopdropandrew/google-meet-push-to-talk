@@ -7,7 +7,7 @@ Simple extension that allows you to mute and unmute yourself with a key press in
 🎉 Install the [Chrome extension](https://chrome.google.com/webstore/detail/google-meet-push-to-talk/pgpidfocdapogajplhjofamgeboonmmj)  
 🔕 Mute/unmute: Quick push <kbd>space</kbd>  
 🔈 Hold <kbd>space</kbd> (default) to talk, release to go back to mute  
-⌨️ Configure your own hotkey if you con't like <kbd>space</kbd>  
+⌨️ Configure your own hotkey if you don't like <kbd>space</kbd>  
 ⚠️ This extensions only works on Google Meet, it will not work on Google Hangouts ⚠️
 
 ## 🤔 PURPOSE
