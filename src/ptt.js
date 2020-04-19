@@ -9,7 +9,8 @@ const toggle = (hotkey, tip) => {
       return;
     }
 
-    if (event.target?.dataset?.tooltip?.includes("microphone")) {
+    const tooltip = event.target?.dataset?.tooltip;
+    if (tooltip?.includes("microphone") || tooltip?.includes("camera")) {
       event.stopPropagation();
     }
 
@@ -30,15 +31,15 @@ const toggle = (hotkey, tip) => {
 
 const hookUpListeners = (hotkey) => {
   if (currentHotkey) {
-    document.removeEventListener("keydown", keydownToggle);
-    document.removeEventListener("keyup", keyupToggle);
+    document.body.removeEventListener("keydown", keydownToggle);
+    document.body.removeEventListener("keyup", keyupToggle);
   }
   currentHotkey = hotkey;
   keydownToggle = toggle(hotkey, "Turn on microphone");
   keyupToggle = toggle(hotkey, "Turn off microphone");
 
-  document.addEventListener("keydown", keydownToggle);
-  document.addEventListener("keyup", keyupToggle);
+  document.body.addEventListener("keydown", keydownToggle);
+  document.body.addEventListener("keyup", keyupToggle);
 };
 
 chrome.storage.sync.get("hotkeyKeys", ({ hotkeyKeys }) => {
