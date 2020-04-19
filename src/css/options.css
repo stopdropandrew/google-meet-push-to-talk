@@ -2,6 +2,10 @@ h1 {
   width: 550px;
 }
 
+img {
+  margin-top: 20px;
+}
+
 kbd {
   font-family: monospace, monospace;
   font-size: 1em;

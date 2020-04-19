@@ -30,7 +30,6 @@
     "zip-webpack-plugin": "^3.0.0"
   },
   "dependencies": {
-    "hotkeys-js": "^3.7.6",
     "keycode": "^2.2.0"
   }
 }

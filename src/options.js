@@ -1,14 +1,5 @@
 import "./css/options.css";
-import hotkeys from "hotkeys-js";
-import keycode from "keycode";
-import { displayHotkey } from "./utils/keycode";
-
-const modifierMap = {
-  16: "shiftKey",
-  18: "altKey",
-  17: "ctrlKey",
-  91: "metaKey",
-};
+import Hotkey from "./js/hotkey";
 
 const editButton = document.getElementById("hotkey_edit"),
   saveButton = document.getElementById("hotkey_save"),
@@ -18,37 +9,32 @@ const editButton = document.getElementById("hotkey_edit"),
 
 let storedHotkey, currentHotkey;
 
-chrome.storage.sync.get("hotkey", ({ hotkey }) => {
-  storedHotkey = hotkey || ["space"];
-  hotkeyDisplay.innerHTML = displayHotkey(storedHotkey);
+chrome.storage.sync.get("hotkeyKeys", ({ hotkeyKeys }) => {
+  storedHotkey = (hotkeyKeys && new Hotkey(hotkeyKeys)) || Hotkey.default();
+  hotkeyDisplay.innerHTML = storedHotkey.display();
 });
+
+const keyCapture = (event) => {
+  event.preventDefault();
+  currentHotkey = Hotkey.fromEvent(event);
+  hotkeyDisplay.innerHTML = currentHotkey.display();
+};
 
 editButton.addEventListener("click", () => {
   hotkeyLabel.classList.add("unlocked");
-
-  hotkeys("*", (event) => {
-    event.preventDefault();
-    hotkeyDisplay.innerHTML = "";
-
-    currentHotkey = hotkeys
-      .getPressedKeyCodes()
-      .map((code) => (code === 91 ? "command" : keycode(code)));
-
-    hotkeyDisplay.innerHTML = displayHotkey(currentHotkey);
-  });
+  document.body.addEventListener("keydown", keyCapture);
 });
 
 saveButton.addEventListener("click", () => {
-  chrome.storage.sync.set({ hotkey: currentHotkey }, () => {
-    hotkeyLabel.classList.remove("unlocked");
-    hotkeys.unbind("*");
-  });
+  hotkeyLabel.classList.remove("unlocked");
+  document.body.removeEventListener("keydown", keyCapture);
+
+  chrome.storage.sync.set({ hotkeyKeys: currentHotkey.keys });
 });
 
 cancelButton.addEventListener("click", () => {
   hotkeyLabel.classList.remove("unlocked");
-
-  hotkeys.unbind("*");
+  document.body.removeEventListener("keydown", keyCapture);
 
   hotkeyDisplay.innerHTML = displayHotkey(storedHotkey);
 });
