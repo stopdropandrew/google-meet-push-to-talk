@@ -42,7 +42,7 @@ const hookUpListeners = (hotkey) => {
 };
 
 chrome.storage.sync.get("hotkeyKeys", ({ hotkeyKeys }) => {
-  hookUpListeners(new Hotkey(hotkeyKeys));
+  hookUpListeners((hotkeyKeys && new Hotkey(hotkeyKeys)) || Hotkey.default());
 });
 
 chrome.storage.onChanged.addListener(({ hotkeyKeys }) => {

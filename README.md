@@ -28,6 +28,12 @@ We don't store your data, period.
 
 ## 📦 CHANGELOG
 
+### v1.0.1 - 2020-04-19
+
+#### Fixed
+
+- Default hotkey wasn't loading after upgrading
+
 ### v1.0.0 - 2020-04-19
 
 #### Added
