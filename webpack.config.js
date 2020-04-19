@@ -12,6 +12,7 @@ module.exports = (env) => {
     entry: {
       ptt: path.resolve(__dirname, "src/ptt.js"),
       background: path.resolve(__dirname, "src/background.js"),
+      options: path.resolve(__dirname, "src/options.js"),
     },
     output: {
       filename: "[name].bundle.js",
@@ -19,6 +20,10 @@ module.exports = (env) => {
     },
     module: {
       rules: [
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
+        },
         {
           test: /\.m?js$/,
           exclude: /(node_modules|bower_components)/,
@@ -52,8 +57,9 @@ module.exports = (env) => {
         },
       ]),
       new HtmlWebpackPlugin({
-        template: "src/popup.html",
-        filename: "popup.html",
+        template: "src/options.html",
+        filename: "options.html",
+        chunks: ["options"],
       }),
       new ZipPlugin({
         path: path.join(__dirname, "releases"),

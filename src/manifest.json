@@ -15,7 +15,8 @@
   ],
   "background": { "scripts": ["background.bundle.js"], "persistent": false },
   "page_action": {
-    "default_popup": "popup.html"
+    "default_popup": "options.html"
   },
+  "options_page": "options.html",
   "permissions": ["storage", "declarativeContent"]
 }
