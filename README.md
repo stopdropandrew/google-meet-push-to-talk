@@ -30,6 +30,12 @@ We don't store your data, period.
 
 ## 📦 CHANGELOG
 
+### v1.1.1 - 2020-04-21
+
+#### Fixed
+
+- Fix canceling hotkey entry
+
 ### v1.1.0 - 2020-04-20
 
 #### Added

@@ -39,7 +39,7 @@ cancelButton.addEventListener("click", () => {
   hotkeyLabel.classList.remove("unlocked");
   document.body.removeEventListener("keydown", keyCapture);
 
-  hotkeyDisplay.innerHTML = displayHotkey(storedHotkey);
+  hotkeyDisplay.innerHTML = storedHotkey.display();
 });
 
 muteOnJoinCheckbox.addEventListener("click", () => {
