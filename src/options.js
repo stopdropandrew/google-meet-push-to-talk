@@ -1,17 +1,20 @@
 import "./css/options.css";
 import Hotkey from "./js/hotkey";
+import { getSavedValues, saveHotkey, saveMuteOnJoin } from "./js/storage";
 
 const editButton = document.getElementById("hotkey_edit"),
   saveButton = document.getElementById("hotkey_save"),
   cancelButton = document.getElementById("hotkey_cancel"),
   hotkeyDisplay = document.getElementById("hotkey"),
-  hotkeyLabel = document.querySelector('label[for="hotkey"]');
+  hotkeyLabel = document.querySelector('label[for="hotkey"]'),
+  muteOnJoinCheckbox = document.getElementById("mute_on_join");
 
 let storedHotkey, currentHotkey;
 
-chrome.storage.sync.get("hotkeyKeys", ({ hotkeyKeys }) => {
-  storedHotkey = (hotkeyKeys && new Hotkey(hotkeyKeys)) || Hotkey.default();
+getSavedValues(({ hotkey, muteOnJoin }) => {
+  storedHotkey = hotkey;
   hotkeyDisplay.innerHTML = storedHotkey.display();
+  muteOnJoinCheckbox.checked = muteOnJoin;
 });
 
 const keyCapture = (event) => {
@@ -29,7 +32,7 @@ saveButton.addEventListener("click", () => {
   hotkeyLabel.classList.remove("unlocked");
   document.body.removeEventListener("keydown", keyCapture);
 
-  chrome.storage.sync.set({ hotkeyKeys: currentHotkey.keys });
+  saveHotkey(currentHotkey);
 });
 
 cancelButton.addEventListener("click", () => {
@@ -37,4 +40,8 @@ cancelButton.addEventListener("click", () => {
   document.body.removeEventListener("keydown", keyCapture);
 
   hotkeyDisplay.innerHTML = displayHotkey(storedHotkey);
+});
+
+muteOnJoinCheckbox.addEventListener("click", () => {
+  saveMuteOnJoin(muteOnJoinCheckbox.checked);
 });
