@@ -38,6 +38,12 @@ label > span {
   padding-right: 5px;
 }
 
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-top: 8px;
+  outline: none;
+}
+
 .input-field {
   width: 48%;
   box-sizing: border-box;

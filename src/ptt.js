@@ -1,6 +1,13 @@
 import Hotkey from "./js/hotkey";
+import { getSavedValues, addChangeListener } from "./js/storage";
+import { elementReady } from "./js/element-ready";
+
+const MIC_OFF = "Turn off microphone",
+  MIC_ON = "Turn on microphone";
 
 let currentHotkey, keydownToggle, keyupToggle;
+
+const micButtonSelector = (tip) => `[data-tooltip*='${tip}']`;
 
 const toggle = (hotkey, tip) => {
   // actual event listener
@@ -23,9 +30,7 @@ const toggle = (hotkey, tip) => {
     }
 
     event.preventDefault();
-    document
-      .querySelectorAll("[data-tooltip]")
-      .forEach((el) => el.dataset.tooltip.includes(tip) && el.click());
+    document.querySelector(micButtonSelector(tip))?.click();
   };
 };
 
@@ -35,17 +40,23 @@ const hookUpListeners = (hotkey) => {
     document.body.removeEventListener("keyup", keyupToggle);
   }
   currentHotkey = hotkey;
-  keydownToggle = toggle(hotkey, "Turn on microphone");
-  keyupToggle = toggle(hotkey, "Turn off microphone");
+  keydownToggle = toggle(hotkey, MIC_ON);
+  keyupToggle = toggle(hotkey, MIC_OFF);
 
   document.body.addEventListener("keydown", keydownToggle);
   document.body.addEventListener("keyup", keyupToggle);
 };
 
-chrome.storage.sync.get("hotkeyKeys", ({ hotkeyKeys }) => {
-  hookUpListeners((hotkeyKeys && new Hotkey(hotkeyKeys)) || Hotkey.default());
+getSavedValues(({ hotkey, muteOnJoin }) => {
+  hookUpListeners(hotkey);
+
+  if (muteOnJoin) {
+    elementReady(micButtonSelector(MIC_OFF)).then((button) => {
+      button.click();
+    });
+  }
 });
 
-chrome.storage.onChanged.addListener(({ hotkeyKeys }) => {
-  hookUpListeners(new Hotkey(hotkeyKeys.newValue));
+addChangeListener(({ hotkey }) => {
+  hookUpListeners(hotkey);
 });
