@@ -49,23 +49,23 @@ class Hotkey {
   }
 
   matchKeydown(event) {
-	  return this.matchKeyup(event);
+    return this.matchKeyup(event);
   }
 
   matchKeyup(event) {
-	  let keyCode = null;
-	  if (this.keys.keyCode !== undefined) {
-		  keyCode = this.keys.keyCode;
-	  } else if (this.keys.ctrlKey) {
-		  keyCode = CtrlKey;
-	  } else if (this.keys.altKey) {
-		  keyCode = AltKey;
-	  } else if (this.keys.shiftKey) {
-		  keyCode = ShiftKey;
-	  } else if (this.keys.metaKey) {
-		  keyCode = MetaKey;
-	  }
-	  return keyCode === event.keyCode;
+    let keyCode = null;
+    if (this.keys.keyCode !== undefined) {
+      keyCode = this.keys.keyCode;
+    } else if (this.keys.ctrlKey) {
+      keyCode = CtrlKey;
+    } else if (this.keys.altKey) {
+      keyCode = AltKey;
+    } else if (this.keys.shiftKey) {
+      keyCode = ShiftKey;
+    } else if (this.keys.metaKey) {
+      keyCode = MetaKey;
+    }
+    return keyCode === event.keyCode;
   }
 }
 
