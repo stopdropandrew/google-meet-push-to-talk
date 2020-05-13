@@ -1,5 +1,10 @@
 import codeToString from "keycode";
 
+const ShiftKey = 16;
+const CtrlKey = 17;
+const AltKey = 18;
+const MetaKey = 91;
+
 class Hotkey {
   constructor({
     keyCode,
@@ -44,29 +49,24 @@ class Hotkey {
   }
 
   matchKeydown(event) {
-    return (
-      this.keys.ctrlKey == event.ctrlKey &&
-      this.keys.altKey == event.altKey &&
-      this.keys.shiftKey == event.shiftKey &&
-      this.keys.metaKey == event.metaKey &&
-      (this.keys.keyCode == event.keyCode ||
-        ([16, 17, 18, 91].includes(event.keyCode) &&
-          this.keys.keyCode === undefined))
-    );
+	  return this.matchKeyup(event);
   }
 
   matchKeyup(event) {
-    if (this.keys.keyCode && this.keys.keyCode == event.keyCode) {
-      return true;
-    }
-
-    return (
-      (this.keys.ctrlKey && !event.ctrlKey) ||
-      (this.keys.altKey && !event.altKey) ||
-      (this.keys.shiftKey && !event.shiftKey) ||
-      (this.keys.metaKey && !event.metaKey)
-    );
+	  let keyCode = null;
+	  if (this.keys.keyCode !== undefined) {
+		  keyCode = this.keys.keyCode;
+	  } else if (this.keys.ctrlKey) {
+		  keyCode = CtrlKey;
+	  } else if (this.keys.altKey) {
+		  keyCode = AltKey;
+	  } else if (this.keys.shiftKey) {
+		  keyCode = ShiftKey;
+	  } else if (this.keys.metaKey) {
+		  keyCode = MetaKey;
+	  }
+	  return keyCode === event.keyCode;
   }
 }
 
-export default Hotkey;
+export {ShiftKey, CtrlKey, AltKey, MetaKey, Hotkey};

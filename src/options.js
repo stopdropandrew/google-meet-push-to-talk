@@ -1,5 +1,5 @@
 import "./css/options.css";
-import Hotkey from "./js/hotkey";
+import { Hotkey } from "./js/hotkey";
 import { getSavedValues, saveHotkey, saveMuteOnJoin } from "./js/storage";
 
 const editButton = document.getElementById("hotkey_edit"),

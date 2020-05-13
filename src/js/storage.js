@@ -1,4 +1,4 @@
-import Hotkey from "./hotkey";
+import { Hotkey } from "./hotkey";
 
 export function getSavedValues(fn) {
   chrome.storage.sync.get(

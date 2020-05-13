@@ -1,4 +1,4 @@
-import Hotkey from "./js/hotkey";
+import { Hotkey } from "./js/hotkey";
 import { getSavedValues, addChangeListener } from "./js/storage";
 import { elementReady } from "./js/element-ready";
 

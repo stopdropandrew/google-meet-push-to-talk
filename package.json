@@ -4,7 +4,8 @@
   "description": "Simple extension that allows you to mute and unmute yourself with the space bar instead of fumbling around trying to click the button.",
   "scripts": {
     "build": "webpack",
-    "build:dev": "NODE_ENV=development webpack"
+    "build:dev": "NODE_ENV=development webpack",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,8 +25,9 @@
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.5.2",
     "html-webpack-plugin": "^4.2.0",
+    "jest": "^26.0.1",
     "style-loader": "^1.1.4",
-    "webpack": "^4.42.1",
+    "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "zip-webpack-plugin": "^3.0.0"
   },
