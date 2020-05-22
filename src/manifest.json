@@ -14,9 +14,18 @@
     }
   ],
   "background": { "scripts": ["background.bundle.js"], "persistent": false },
+  "commands": {
+    "toggle-meeting-mute": {
+      "suggested_key": {
+        "default": "Ctrl+Space",
+        "mac": "Ctrl+Space"
+      },
+      "description": "Toggle mute in Google Meet"
+    }
+  },
   "page_action": {
     "default_popup": "options.html"
   },
   "options_page": "options.html",
-  "permissions": ["storage", "declarativeContent"]
+  "permissions": ["storage", "declarativeContent", "tabs"]
 }

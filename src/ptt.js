@@ -60,3 +60,12 @@ getSavedValues(({ hotkey, muteOnJoin }) => {
 addChangeListener(({ hotkey }) => {
   hookUpListeners(hotkey);
 });
+
+chrome.runtime.onMessage.addListener(function (request, sender) {
+  if (request?.toggle === "mute") {
+    const offButton = document.querySelector(micButtonSelector(MIC_OFF));
+    const onButton = document.querySelector(micButtonSelector(MIC_ON));
+    debugger;
+    (offButton || onButton)?.click();
+  }
+});
