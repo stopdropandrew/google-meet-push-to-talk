@@ -1,5 +1,7 @@
 import codeToString from "keycode";
 
+let keydownState = false;
+
 class Hotkey {
   constructor({
     keyCode,
@@ -44,7 +46,7 @@ class Hotkey {
   }
 
   matchKeydown(event) {
-    return (
+    if (
       this.keys.ctrlKey == event.ctrlKey &&
       this.keys.altKey == event.altKey &&
       this.keys.shiftKey == event.shiftKey &&
@@ -52,20 +54,34 @@ class Hotkey {
       (this.keys.keyCode == event.keyCode ||
         ([16, 17, 18, 91].includes(event.keyCode) &&
           this.keys.keyCode === undefined))
-    );
+    ) {
+      keydownState = true;
+      return true;
+    }
+    return false;
   }
 
   matchKeyup(event) {
+    console.log(keydownState);
+    if (!keydownState) {
+      return false;
+    }
+
     if (this.keys.keyCode && this.keys.keyCode == event.keyCode) {
+      keydownState = false;
       return true;
     }
 
-    return (
+    if (
       (this.keys.ctrlKey && !event.ctrlKey) ||
       (this.keys.altKey && !event.altKey) ||
       (this.keys.shiftKey && !event.shiftKey) ||
       (this.keys.metaKey && !event.metaKey)
-    );
+    ) {
+      keydownState = false;
+      return true;
+    }
+    return false;
   }
 }
 
