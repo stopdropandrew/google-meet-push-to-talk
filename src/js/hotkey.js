@@ -62,7 +62,6 @@ class Hotkey {
   }
 
   matchKeyup(event) {
-    console.log(keydownState);
     if (!keydownState) {
       return false;
     }
