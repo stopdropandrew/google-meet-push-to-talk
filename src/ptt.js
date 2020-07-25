@@ -2,10 +2,19 @@ import Hotkey from "./js/hotkey";
 import { getSavedValues, addChangeListener } from "./js/storage";
 import { elementReady } from "./js/element-ready";
 
-const MIC_OFF = "Turn off microphone",
-  MIC_ON = "Turn on microphone";
+const MIC_OFF = {
+  en: "Turn off microphone",
+  ja: "マイクをオフにする"
+}
+
+const MIC_ON = {
+  en: "Turn on microphone",
+  ja: "マイクをオンにする"
+}
 
 let currentHotkey, keydownToggle, keyupToggle;
+
+const currentLanguage = () => window.navigator.language.split("-")[0];
 
 const micButtonSelector = (tip) => `[data-tooltip*='${tip}']`;
 
@@ -40,8 +49,8 @@ const hookUpListeners = (hotkey) => {
     document.body.removeEventListener("keyup", keyupToggle);
   }
   currentHotkey = hotkey;
-  keydownToggle = toggle(hotkey, MIC_ON);
-  keyupToggle = toggle(hotkey, MIC_OFF);
+  keydownToggle = toggle(hotkey, MIC_ON[currentLanguage()]);
+  keyupToggle = toggle(hotkey, MIC_OFF[currentLanguage()]);
 
   document.body.addEventListener("keydown", keydownToggle);
   document.body.addEventListener("keyup", keyupToggle);
@@ -51,7 +60,7 @@ getSavedValues(({ hotkey, muteOnJoin }) => {
   hookUpListeners(hotkey);
 
   if (muteOnJoin) {
-    elementReady(micButtonSelector(MIC_OFF)).then((button) => {
+    elementReady(micButtonSelector(MIC_OFF[currentLanguage()])).then((button) => {
       button.click();
     });
   }
