@@ -20,7 +20,7 @@
         "default": "Ctrl+Space",
         "mac": "MacCtrl+Space"
       },
-      "description": "Global toggle mute in Google Meet"
+      "description": "Globally TOGGLE mute in Google Meet"
     }
   },
   "page_action": {
