@@ -18,7 +18,7 @@
     "toggle-meeting-mute": {
       "suggested_key": {
         "default": "Ctrl+Space",
-        "mac": "Ctrl+Space"
+        "mac": "MacCtrl+Space"
       },
       "description": "Global toggle mute in Google Meet"
     }
