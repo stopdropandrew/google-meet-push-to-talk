@@ -14,7 +14,7 @@ const MIC_ON = {
 
 let currentHotkey, keydownToggle, keyupToggle;
 
-const currentLanguage = () => window.navigator.language.split("-")[0];
+const currentLanguage = () => document.documentElement.lang;
 
 const micButtonSelector = (tip) => `[data-tooltip*='${tip}']`;
 
