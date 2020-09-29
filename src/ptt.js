@@ -3,11 +3,13 @@ import { getSavedValues, addChangeListener } from "./js/storage";
 import { elementReady } from "./js/element-ready";
 
 const MIC_OFF = {
+  de: "Mikrofon deaktivieren",
   en: "Turn off microphone",
   ja: "マイクをオフにする"
 }
 
 const MIC_ON = {
+  de: "Mikrofon aktivieren",
   en: "Turn on microphone",
   ja: "マイクをオンにする"
 }
