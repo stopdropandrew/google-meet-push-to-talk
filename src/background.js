@@ -1,4 +1,8 @@
 chrome.runtime.onInstalled.addListener(function () {
+  if (!chrome.declarativeContent) {
+    return;
+  }
+
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
     chrome.declarativeContent.onPageChanged.addRules([
       {
