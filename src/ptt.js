@@ -4,13 +4,13 @@ import { elementReady } from "./js/element-ready";
 
 const MIC_OFF = {
   en: "Turn off microphone",
-  ja: "マイクをオフにする"
-}
+  ja: "マイクをオフにする",
+};
 
 const MIC_ON = {
   en: "Turn on microphone",
-  ja: "マイクをオンにする"
-}
+  ja: "マイクをオンにする",
+};
 
 let currentHotkey, keydownToggle, keyupToggle;
 
@@ -60,9 +60,11 @@ getSavedValues(({ hotkey, muteOnJoin }) => {
   hookUpListeners(hotkey);
 
   if (muteOnJoin) {
-    elementReady(micButtonSelector(MIC_OFF[currentLanguage()])).then((button) => {
-      button.click();
-    });
+    elementReady(micButtonSelector(MIC_OFF[currentLanguage()])).then(
+      (button) => {
+        button.click();
+      }
+    );
   }
 });
 
