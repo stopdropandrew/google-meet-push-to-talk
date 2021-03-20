@@ -9,6 +9,7 @@ module.exports = (env) => {
 
   return {
     mode,
+    devtool: mode === "development" ? "source-map" : false,
     entry: {
       ptt: path.resolve(__dirname, "src/ptt.js"),
       background: path.resolve(__dirname, "src/background.js"),
