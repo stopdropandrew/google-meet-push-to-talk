@@ -48,13 +48,7 @@ const toggle = (hotkey, isMuted) => {
       return;
     }
 
-    const tooltip = event.target?.dataset?.tooltip;
-    if (
-      tooltip?.includes("+ d") ||
-      tooltip?.includes("+ e") ||
-      tooltip?.includes("microphone") ||
-      tooltip?.includes("camera")
-    ) {
+    if (event.target?.dataset?.tooltip) {
       event.stopPropagation();
     }
 
