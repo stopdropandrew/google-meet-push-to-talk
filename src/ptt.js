@@ -17,19 +17,27 @@ const MIC_ON = {
 let currentHotkey, keydownToggle, keyupToggle;
 
 const currentLanguage = () => document.documentElement.lang;
-
 const micButtonSelector = (tip) => `[data-tooltip*='${tip}']`;
 
-const toggle = (hotkey, tip) => {
+const offButtonSelector = () =>
+  [
+    "[data-is-muted=false][data-tooltip*='+ d']",
+    micButtonSelector(MIC_OFF[currentLanguage()]),
+  ].join(",");
+const offButton = () => document.querySelector(offButtonSelector());
+
+const onButtonSelector = () =>
+  [
+    "[data-is-muted=true][data-tooltip*='+ d']",
+    micButtonSelector(MIC_ON[currentLanguage()]),
+  ].join(",");
+const onButton = () => document.querySelector(onButtonSelector());
+
+const toggle = (hotkey, isMuted) => {
   // actual event listener
   return (event) => {
     if (event.target && ["input", "textarea"].includes(event.target.type)) {
       return;
-    }
-
-    const tooltip = event.target?.dataset?.tooltip;
-    if (tooltip?.includes("microphone") || tooltip?.includes("camera")) {
-      event.stopPropagation();
     }
 
     if (event.type === "keydown" && !hotkey.matchKeydown(event)) {
@@ -40,8 +48,20 @@ const toggle = (hotkey, tip) => {
       return;
     }
 
+    const tooltip = event.target?.dataset?.tooltip;
+    if (
+      tooltip?.includes("+ d") ||
+      tooltip?.includes("+ e") ||
+      tooltip?.includes("microphone") ||
+      tooltip?.includes("camera")
+    ) {
+      event.stopPropagation();
+    }
+
     event.preventDefault();
-    document.querySelector(micButtonSelector(tip))?.click();
+
+    const micButton = isMuted ? onButton() : offButton();
+    micButton?.click();
   };
 };
 
@@ -51,8 +71,8 @@ const hookUpListeners = (hotkey) => {
     document.body.removeEventListener("keyup", keyupToggle);
   }
   currentHotkey = hotkey;
-  keydownToggle = toggle(hotkey, MIC_ON[currentLanguage()]);
-  keyupToggle = toggle(hotkey, MIC_OFF[currentLanguage()]);
+  keydownToggle = toggle(hotkey, true);
+  keyupToggle = toggle(hotkey, false);
 
   document.body.addEventListener("keydown", keydownToggle);
   document.body.addEventListener("keyup", keyupToggle);
@@ -62,11 +82,9 @@ getSavedValues(({ hotkey, muteOnJoin }) => {
   hookUpListeners(hotkey);
 
   if (muteOnJoin) {
-    elementReady(micButtonSelector(MIC_OFF[currentLanguage()])).then(
-      (button) => {
-        button.click();
-      }
-    );
+    elementReady(offButtonSelector()).then((button) => {
+      button.click();
+    });
   }
 });
 
@@ -77,8 +95,6 @@ addChangeListener(({ hotkey }) => {
 var port = chrome.runtime.connect({ name: "meet" });
 port.onMessage.addListener(function (msg) {
   if (msg?.toggle === "mute") {
-    const offButton = document.querySelector(micButtonSelector(MIC_OFF));
-    const onButton = document.querySelector(micButtonSelector(MIC_ON));
-    (offButton || onButton)?.click();
+    (offButton() || onButton())?.click();
   }
 });
