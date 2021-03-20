@@ -1,9 +1,5 @@
-h1 {
-  width: 550px;
-}
-
-img {
-  margin-top: 20px;
+body {
+  min-width: 400px;
 }
 
 kbd {
@@ -23,7 +19,7 @@ kbd {
 
 .form-style {
   max-width: 500px;
-  padding: 20px 12px 10px 20px;
+  padding: 10px 20px;
   font: 13px Arial, Helvetica, sans-serif;
 }
 label {

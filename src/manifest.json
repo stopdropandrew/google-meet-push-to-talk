@@ -24,8 +24,21 @@
     }
   },
   "page_action": {
-    "default_popup": "options.html"
+    "show_matches": ["https://meet.google.com/*"],
+    "default_popup": "options.html",
+    "default_icon": {
+      "16": "icons/monkey16.png"
+    }
   },
-  "options_page": "options.html",
-  "permissions": ["storage", "declarativeContent"]
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true
+  },
+  "permissions": ["storage", "declarativeContent"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "google-meet-push-to-talk@bash.video",
+      "strict_min_version": "42.0"
+    }
+  }
 }
