@@ -4,6 +4,8 @@ const path = require("path"),
   HtmlWebpackPlugin = require("html-webpack-plugin"),
   ZipPlugin = require("zip-webpack-plugin");
 
+const fs = require("fs");
+
 module.exports = (env) => {
   const mode = process.env.NODE_ENV || "production";
 
@@ -47,7 +49,8 @@ module.exports = (env) => {
             transform: function (content, path) {
               return Buffer.from(
                 JSON.stringify({
-                  version: process.env.npm_package_version,
+                  version: JSON.parse(fs.readFileSync("./package.json"))
+                    .version,
                   content_security_policy:
                     mode === "development"
                       ? "script-src 'self' 'unsafe-eval'; object-src 'self'"
