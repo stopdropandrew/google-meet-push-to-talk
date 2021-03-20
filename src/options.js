@@ -21,21 +21,26 @@ const keyCapture = (event) => {
   event.preventDefault();
   currentHotkey = Hotkey.fromEvent(event);
   hotkeyDisplay.innerHTML = currentHotkey.display();
+  hotkeyDisplay.style.display = "none";
+  hotkeyDisplay.style.display = "block";
 };
 
-editButton.addEventListener("click", () => {
+editButton.addEventListener("click", (event) => {
+  event.preventDefault();
   hotkeyLabel.classList.add("unlocked");
   document.body.addEventListener("keydown", keyCapture);
 });
 
-saveButton.addEventListener("click", () => {
+saveButton.addEventListener("click", (event) => {
+  event.preventDefault();
   hotkeyLabel.classList.remove("unlocked");
   document.body.removeEventListener("keydown", keyCapture);
 
   saveHotkey(currentHotkey);
 });
 
-cancelButton.addEventListener("click", () => {
+cancelButton.addEventListener("click", (event) => {
+  event.preventDefault();
   hotkeyLabel.classList.remove("unlocked");
   document.body.removeEventListener("keydown", keyCapture);
 

@@ -41,8 +41,8 @@ class Hotkey {
 
   display() {
     return this.keyStrings()
-      .map((key) => `<kbd>${key}</kbd>`)
-      .join(" + ");
+      .map((key) => `<li class="options__key">${key}</li>`)
+      .join("");
   }
 
   matchKeydown(event) {
