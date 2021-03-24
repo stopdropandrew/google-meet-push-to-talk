@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Meet Push-To-Talk Update v2.0</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon-16x16.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <style type="text/css">
+      body {
+        background-color: rgba(203, 204, 207, 0.24);
+      }
+
+      span.badge {
+        height: auto;
+        padding: 4px 12px 4px 10px;
+      }
+
+      span.badge.new {
+        font-size: 0.8rem;
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+      }
+
+      span.badge.new:after {
+        content: "";
+      }
+
+      h4 {
+        line-height: 130%;
+      }
+
+      .card {
+        border-radius: 20px;
+      }
+
+      .card .card-content {
+        padding: 48px;
+      }
+
+      .card .card-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+
+      .center {
+        justify-content: center;
+      }
+
+      .fat-font {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      .btn,
+      .btn-large,
+      .btn-small {
+        background-color: #3f51b5;
+        border-radius: 3px;
+        text-transform: none;
+      }
+
+      .btn:hover,
+      .btn-large:hover,
+      .btn-small:hover {
+        background-color: #2c387e;
+        opacity: 0.9;
+        transform: translateY(-2px);
+      }
+
+      .yellow-font {
+        color: #fffc52;
+      }
+
+      nav,
+      .page-footer {
+        background-color: #5571dc;
+      }
+
+      nav {
+        background-color: #efefef;
+      }
+
+      nav .brand-logo {
+        color: #5571dc;
+        font-size: 1.5rem;
+        width: 100%;
+      }
+
+      .has-radius {
+        border-radius: 5px;
+      }
+
+      @media only screen and (min-width: 993px) {
+        .container {
+          width: 85%;
+        }
+      }
+
+      @media only screen and (max-width: 992px) {
+        .valign-wrapper.valign-only-above-medium {
+          display: block;
+        }
+
+        .card .card-content {
+          padding: 36px;
+        }
+
+        .card .card-content p {
+          font-size: 1.1rem;
+          margin-bottom: 20px;
+        }
+      }
+
+      @media only screen and (max-width: 600px) {
+        .card .card-content {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-content">
+          <div class="row valign-wrapper valign-only-above-medium">
+            <div class="col s12 m12">
+              <div class="card-title" style="clear: both; margin: -1em 0 0 0">
+                <h4>Welcome to Google Meet Push To Talk 2.0</h4>
+              </div>
+            </div>
+          </div>
+          <div class="row valign-wrapper valign-only-above-medium">
+            <div class="col s12 m12 l6 xl8">
+              <p>
+                I built this Chrome Extension because I knew there was a need for an easier way to mute and unmute on Google Meet calls.
+                Now we have over a million users around the world and we’ve added a bunch of new features.
+                With this big 2.0 update I wanted to highlight what’s new:
+              </p>
+              <ol style="font-size: 125%">
+                <li>Language Support - It should now work regardless of language</li>
+                <li>Mute from any Chrome tab using &lt;Ctrl&gt;-&lt;Space&gt;</Ctrl></li>
+                <li>Other bug fixes and design refresh</li>
+                <li>
+                  We've also integrated with the incredibly cool mütesync.
+                  It's a physical, light-up mute button that makes muting even easier.
+                </li>
+              </ol>
+              <a
+                href="https://mutesync.com/kickstarter-010pixel"
+                target="_blank"
+                class="waves-effect waves-light btn-large"
+                >Learn More
+                <i class="material-icons right yellow-font">send</i></a
+              >
+            </div>
+            <div class="col s12 m12 l6 xl4">
+              <div class="valign-wrapper center">
+                <img class="" src="assets/monkey-128.png" width="100" height="100" />
+                <span
+                  style="
+                    font-size: 4.2rem;
+                    font-weight: bold;
+                    margin: 0 30px 0 10px;
+                  "
+                  >+</span
+                >
+                <img class="" src="assets/mutesync-logo.png" />
+              </div>
+            </div>
+          </div>
+          <div class="row valign-wrapper valign-only-above-medium">
+            <div class="col s12 m12 l6 xl6">
+              <br class="hide-on-med-and-down" />
+              <img
+                class="z-depth-2 has-radius"
+                width="100%"
+                src="assets/button_press.gif"
+              />
+            </div>
+            <div class="col s12 m12 l6 xl6">
+              <br class="hide-on-med-and-down" />
+              <img
+                class="z-depth-2 has-radius"
+                width="100%"
+                src="assets/zoom_demo.gif"
+              />
+            </div>
+          </div>
+          <div class="row valign-wrapper valign-only-above-medium">
+            <div class="col s12 m12 l6 xl6 show-on-large hide-on-med-only">
+              <p style="margin: 0px; margin-top: 17px">
+                🎛️ stays in sync with Google Meet, Zoom, Discord and more
+              </p>
+              <p style="margin: 0px; margin-top: 17px">
+                🌈 set it to any color you like
+              </p>
+              <p style="margin: 0px; margin-top: 17px">
+                😑 makes a great passive aggressive gift
+              </p>
+              <p style="margin: 0px; margin-top: 17px">🖥️ mac or PC</p>
+            </div>
+            <div class="col s12 m12 l6 xl6">
+              <p style="margin: 0px; margin-top: 15px">
+                🤔 quickly mute and unmute without thinking
+              </p>
+              <p style="margin: 0px; margin-top: 17px">
+                😎 make your desk look rad
+              </p>
+              <p style="margin: 0px; margin-top: 17px">
+                😱 family knows when the teacher/boss is listening
+              </p>
+              <p style="margin: 0px; margin-top: 17px">
+                😫 never stress about your mute status
+              </p>
+            </div>
+            <div class="col s12 m12 l6 xl6 hide-on-large-only">
+              <p style="margin: 0px; margin-top: 17px">
+                🎛️ stays in sync with Zoom, Meet, Whereby and more
+              </p>
+              <p style="margin: 0px; margin-top: 17px">
+                🌈 set it to any color you like
+              </p>
+              <p style="margin: 0px; margin-top: 17px">
+                😑 makes a great passive aggressive gift
+              </p>
+              <p style="margin: 0px; margin-top: 17px">🖥️ mac or PC</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
