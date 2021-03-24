@@ -31,6 +31,7 @@
     "zip-webpack-plugin": "^4.0.1"
   },
   "dependencies": {
-    "keycode": "^2.2.0"
+    "keycode": "^2.2.0",
+    "socket.io-client": "^4.0.0"
   }
 }
