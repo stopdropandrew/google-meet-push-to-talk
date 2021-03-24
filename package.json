@@ -1,6 +1,6 @@
 {
   "name": "google-meet-push-to-talk",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Simple extension that allows you to mute and unmute yourself with the space bar instead of fumbling around trying to click the button.",
   "scripts": {
     "build": "webpack",
@@ -31,6 +31,7 @@
     "zip-webpack-plugin": "^4.0.1"
   },
   "dependencies": {
-    "keycode": "^2.2.0"
+    "keycode": "^2.2.0",
+    "socket.io-client": "^4.0.0"
   }
 }
