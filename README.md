@@ -9,6 +9,7 @@ Simple extension that allows you to mute and unmute yourself with a key press in
 🔈 Hold <kbd>space</kbd> (default) to talk, release to go back to mute  
 ⌨️ Configure your own hotkey if you don't like <kbd>space</kbd>  
 📣 Mute will be on by default, but you can disable that feature in settings  
+🗂 Mute from any tab by pushing <kbd>ctrl</kbd> + <kbd>space</kbd>  
 ⚠️ This extensions only works on Google Meet, it will not work on Google Hangouts ⚠️
 
 ## 🤔 PURPOSE
@@ -25,12 +26,21 @@ We don't store your data, period.
 🙌Casey Watts and all the contributors at the [original gist](https://gist.github.com/caseywatts/561bc498b6feec3d419b29a65d916663) for finding a clean and simple solution  
 🤝Tim Oxley and the [keycode library](https://github.com/timoxley/keycode)  
 👉Joshua Wilson for [element-ready.js](https://gist.github.com/jwilson8767/db379026efcbd932f64382db4b02853e)  
-🕸[Socket.io-client](https://github.com/socketio/socket.io-client)
+🕸[Socket.io-client](https://github.com/socketio/socket.io-client). 
 🎨[Doug Stewart](https://dougstewart.io/) for helping style the options page  
 💪[Google Meet Grid View](https://chrome.google.com/webstore/detail/google-meet-grid-view/bjkegbgpfgpikgkfidhcihhiflbjgfic?hl=en-US) for being another great Chrome extension for group meetings and inspiring this  
 🙊Icons created by [Freepik](https://www.flaticon.com/authors/freepik) from [https://www.flaticon.com](www.flaticon.com)
 
 ## 📦 CHANGELOG
+
+### v2.0.0 - 2021-03-23
+
+#### Added
+
+- Language support
+- mutesync support
+- multi-tab support
+- respect Google language
 
 ### v1.1.1 - 2020-04-21
 
