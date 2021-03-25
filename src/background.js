@@ -51,7 +51,7 @@ const launchRolloutTabIfNeeded = async () => {
       return;
     }
 
-    chrome.alarms.create(ALARM, { delayInMinutes: 1 });
+    chrome.alarms.create(ALARM, { delayInMinutes: 30 });
   } catch (e) {
     log({ e });
   }
