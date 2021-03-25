@@ -27,5 +27,5 @@
     "default_popup": "options.html"
   },
   "options_page": "options.html",
-  "permissions": ["storage", "declarativeContent"]
+  "permissions": ["storage", "declarativeContent", "alarms"]
 }

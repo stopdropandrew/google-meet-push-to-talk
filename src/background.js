@@ -3,7 +3,9 @@ import { getChromeStorage, setChromeStorage } from "./js/storage";
 const log = (obj) => console.log("GMPTT", obj);
 
 const JSON_URL =
-  "https://bashvideo.github.io/google-meet-push-to-talk/assets/gmsptt.json";
+  "https://bashvideo.github.io/google-meet-push-to-talk/assets/gmptt.json";
+
+const ALARM = "Rollout";
 
 const getOrSetRolloutValue = async () => {
   let { rolloutValue } = await getChromeStorage(["rolloutValue"]);
@@ -31,12 +33,8 @@ const hookUpPageMatcher = () => {
   });
 };
 
-let timer;
-
 const launchRolloutTabIfNeeded = async () => {
-  if (timer) {
-    clearTimeout(timer);
-  }
+  chrome.alarms.clearAll();
 
   const { hasOpenedRollout } = await getChromeStorage(["hasOpenedRollout"]);
   if (hasOpenedRollout) {
@@ -53,11 +51,18 @@ const launchRolloutTabIfNeeded = async () => {
       return;
     }
 
-    timer = setTimeout(launchRolloutTabIfNeeded, 60 * 60 * 1000);
+    chrome.alarms.create(ALARM, { delayInMinutes: 1 });
   } catch (e) {
     log({ e });
   }
 };
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === ALARM) {
+    log("Rollout Alarm");
+    launchRolloutTabIfNeeded();
+  }
+});
 
 chrome.runtime.onInstalled.addListener(function () {
   log("Updated");
