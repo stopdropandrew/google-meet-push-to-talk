@@ -47,7 +47,9 @@ const launchRolloutTabIfNeeded = async () => {
     log({ rolloutValue, launchRollout, launchUrl });
     if (rolloutValue <= launchRollout) {
       await setChromeStorage({ hasOpenedRollout: true });
-      chrome.tabs.create({ url: launchUrl });
+      chrome.tabs.create({
+        url: `${launchUrl}?ro=${Math.floor(rolloutValue * 20)}`,
+      });
       return;
     }
 
