@@ -161,17 +161,15 @@
           <div class="row valign-wrapper valign-only-above-medium">
             <div class="col s12 m12 l6 xl8">
               <p>
-                I built this Chrome Extension because I knew there was a need for an easier way to mute and unmute on Google Meet calls.
-                Now we have over a million users around the world and we’ve added a bunch of new features.
-                With this big 2.0 update I wanted to highlight what’s new:
+                Thanks for using this extension! We're rolling out a big 2.0 update I wanted to highlight what’s new:
               </p>
               <ol style="font-size: 125%">
-                <li>Language Support - It should now work regardless of language</li>
+                <li>Language Support - works in non-English languages now</li>
                 <li>Mute from any Chrome tab using &lt;Ctrl&gt;-&lt;Space&gt;</Ctrl></li>
                 <li>Other bug fixes and design refresh</li>
                 <li>
-                  We've also integrated with the incredibly cool mütesync.
-                  It's a physical, light-up mute button that makes muting even easier.
+                  We've also integrated with our friends at mütesync.
+                  They have a physical, light-up mute button that makes muting even easier and works with Zoom, Discord, and more.
                 </li>
               </ol>
               <a
@@ -254,11 +252,25 @@
               </p>
               <p style="margin: 0px; margin-top: 17px">🖥️ mac or PC</p>
             </div>
+
+          </div>
+          <div>
+            <a
+            href="https://mutesync.com/kickstarter-gmptt"
+            target="_blank"
+            class="waves-effect waves-light btn-large"
+            >Learn More
+            <i class="material-icons right yellow-font">send</i></a
+          >
           </div>
         </div>
       </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+      document.querySelectorAll('a').forEach((e) => {e.href += window.location.search});
+    </script>
   </body>
 </html>
