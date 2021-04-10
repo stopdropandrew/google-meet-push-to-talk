@@ -1,6 +1,5 @@
 import { getChromeStorage, setChromeStorage } from "./js/storage";
-
-const log = (obj) => console.log("GMPTT", obj);
+import log from "./js/log";
 
 const JSON_URL =
   "https://bashvideo.github.io/google-meet-push-to-talk/assets/gmptt.json";
