@@ -2,6 +2,7 @@ import { io } from "socket.io-client";
 
 import { getSavedValues, addChangeListener } from "./js/storage";
 import { elementReady } from "./js/element-ready";
+import log from "./js/log";
 
 const MIC_OFF = {
   de: "Mikrofon deaktivieren",
@@ -73,12 +74,24 @@ const hookUpListeners = (hotkey) => {
   document.body.addEventListener("keyup", keyupToggle);
 };
 
+const clickUntilMuted = (maxAttempts = 40) => {
+  if (maxAttempts === 0) {
+    return;
+  }
+
+  const button = offButton();
+  if (button) {
+    button.click();
+    setTimeout(() => clickUntilMuted(maxAttempts - 1), 250);
+  }
+};
+
 getSavedValues(({ hotkey, muteOnJoin }) => {
   hookUpListeners(hotkey);
 
   if (muteOnJoin) {
     elementReady(offButtonSelector()).then((button) => {
-      button.click();
+      clickUntilMuted();
     });
   }
 });
