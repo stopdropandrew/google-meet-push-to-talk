@@ -30,14 +30,18 @@ const hookUpPageMatcher = () => {
   });
 };
 
+const findRolloutCohort = (cohorts, rolloutValue) =>
+  cohorts.findIndex((value) => rolloutValue <= value);
+
 const launchRolloutTabIfNeeded = async () => {
   chrome.alarms.clearAll();
 
   try {
     const {
-      launchRollout,
+      launchRolloutCohorts,
       launchUrl,
       ignoreAlreadyOpened,
+      overrideRolloutValue,
     } = await fetchConfig();
 
     const { hasOpenedRollout } = await getChromeStorage(["hasOpenedRollout"]);
@@ -46,12 +50,13 @@ const launchRolloutTabIfNeeded = async () => {
       return;
     }
 
-    const rolloutValue = await getOrSetRolloutValue();
-    log({ rolloutValue, launchRollout, launchUrl });
-    if (rolloutValue <= launchRollout) {
+    const rolloutValue = overrideRolloutValue || (await getOrSetRolloutValue());
+    const cohort = findRolloutCohort(launchRolloutCohorts, rolloutValue);
+    log({ cohort, rolloutValue, launchUrl, launchRolloutCohorts });
+    if (cohort >= 0) {
       await setChromeStorage({ hasOpenedRollout: true });
       chrome.tabs.create({
-        url: `${launchUrl}?ro=${Math.floor(rolloutValue * 20)}`,
+        url: `${launchUrl}?ro=${cohort}`,
       });
       return;
     }
