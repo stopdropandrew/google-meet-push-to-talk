@@ -76,10 +76,11 @@ module.exports = (env) => {
         filename: "options.html",
         chunks: ["options"],
       }),
-      new ZipPlugin({
-        path: path.join(__dirname, "releases"),
-        filename: `ptt-${process.env.npm_package_version}.zip`,
-      }),
-    ],
+      mode !== "development" &&
+        new ZipPlugin({
+          path: path.join(__dirname, "releases"),
+          filename: `ptt-${process.env.npm_package_version}.zip`,
+        }),
+    ].filter(Boolean),
   };
 };
