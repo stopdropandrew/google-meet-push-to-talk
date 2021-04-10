@@ -5,6 +5,7 @@ const path = require("path"),
   ZipPlugin = require("zip-webpack-plugin");
 
 const fs = require("fs");
+const webpack = require("webpack");
 
 module.exports = (env) => {
   const mode = process.env.NODE_ENV || "production";
@@ -81,6 +82,11 @@ module.exports = (env) => {
           path: path.join(__dirname, "releases"),
           filename: `ptt-${process.env.npm_package_version}.zip`,
         }),
+      mode !== "development" &&
+        new webpack.NormalModuleReplacementPlugin(
+          /src\/js\/fetch-config\.js/,
+          "./fetch-config.production.js"
+        ),
     ].filter(Boolean),
   };
 };

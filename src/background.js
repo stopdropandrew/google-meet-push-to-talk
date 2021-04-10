@@ -1,8 +1,6 @@
 import { getChromeStorage, setChromeStorage } from "./js/storage";
 import log from "./js/log";
-
-const JSON_URL =
-  "https://bashvideo.github.io/google-meet-push-to-talk/assets/gmptt.json";
+import fetchConfig from "./js/fetch-config.js";
 
 const ALARM = "Rollout";
 
@@ -35,13 +33,19 @@ const hookUpPageMatcher = () => {
 const launchRolloutTabIfNeeded = async () => {
   chrome.alarms.clearAll();
 
-  const { hasOpenedRollout } = await getChromeStorage(["hasOpenedRollout"]);
-  if (hasOpenedRollout) {
-    return;
-  }
   try {
-    const results = await fetch(JSON_URL);
-    const { launchRollout, launchUrl } = await results.json();
+    const {
+      launchRollout,
+      launchUrl,
+      ignoreAlreadyOpened,
+    } = await fetchConfig();
+
+    const { hasOpenedRollout } = await getChromeStorage(["hasOpenedRollout"]);
+    if (hasOpenedRollout && !ignoreAlreadyOpened) {
+      log("Already opened rollout tab");
+      return;
+    }
+
     const rolloutValue = await getOrSetRolloutValue();
     log({ rolloutValue, launchRollout, launchUrl });
     if (rolloutValue <= launchRollout) {
