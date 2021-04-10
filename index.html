@@ -278,7 +278,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script>
-      document.querySelectorAll('a').forEach((e) => {e.href += window.location.search || "?" + "g=0"});
+      document.querySelectorAll('a').forEach((e) => {
+        url = new URL(e.href);
+        const params = new URLSearchParams(window.location.search)
+        params.forEach(function(value, key) {
+          url.searchParams.set(value, key)
+        })
+        url.searchParams.set("g", "0")
+        e.href = url.href
+      });
     </script>
   </body>
 </html>
