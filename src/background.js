@@ -33,7 +33,7 @@ const hookUpPageMatcher = () => {
 const findRolloutCohort = (cohorts, rolloutValue) =>
   cohorts.findIndex((value) => rolloutValue <= value);
 
-const launchRolloutTabIfNeeded = async () => {
+const launchRolloutTabIfNeeded = async (reason) => {
   chrome.alarms.clearAll();
 
   try {
@@ -51,7 +51,10 @@ const launchRolloutTabIfNeeded = async () => {
     }
 
     const rolloutValue = overrideRolloutValue || (await getOrSetRolloutValue());
-    const cohort = findRolloutCohort(launchRolloutCohorts, rolloutValue);
+    const cohort =
+      reason === "install"
+        ? 0.1
+        : findRolloutCohort(launchRolloutCohorts, rolloutValue);
     log({ cohort, rolloutValue, launchUrl, launchRolloutCohorts });
     if (cohort >= 0) {
       await setChromeStorage({ hasOpenedRollout: true });
@@ -70,19 +73,21 @@ const launchRolloutTabIfNeeded = async () => {
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === ALARM) {
     log("Rollout Alarm");
-    launchRolloutTabIfNeeded();
+    launchRolloutTabIfNeeded("alarm");
   }
 });
 
-chrome.runtime.onInstalled.addListener(function () {
-  log("Updated");
+chrome.runtime.onInstalled.addListener(function (details) {
   hookUpPageMatcher();
-  launchRolloutTabIfNeeded();
+
+  const reason = details.reason === "install" ? "install" : "update";
+  log(`Updated - ${reason}`);
+  launchRolloutTabIfNeeded(reason);
 });
 
 chrome.runtime.onStartup.addListener(() => {
   log("Startup");
-  launchRolloutTabIfNeeded();
+  launchRolloutTabIfNeeded("startup");
 });
 
 // keep a list of connected content scripts so that we can tell them to toggle mute
