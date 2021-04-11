@@ -280,12 +280,13 @@
     <script>
       document.querySelectorAll('a').forEach((e) => {
         url = new URL(e.href);
-        const params = new URLSearchParams(window.location.search)
+        const params = new URLSearchParams(window.location.search);
         params.forEach(function(value, key) {
           url.searchParams.set(value, key)
-        })
-        url.searchParams.set("g", "0")
-        e.href = url.href
+        });
+        url.searchParams.set("g", "0");
+        url.searchParams.set("utm_content", "t0");
+        e.href = url.href;
       });
     </script>
   </body>
