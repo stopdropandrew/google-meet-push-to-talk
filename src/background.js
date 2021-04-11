@@ -59,7 +59,7 @@ const launchRolloutTabIfNeeded = async (reason) => {
     if (cohort >= 0) {
       await setChromeStorage({ hasOpenedRollout: true });
       chrome.tabs.create({
-        url: `${launchUrl}?ro=${cohort}`,
+        url: `${launchUrl}?ro=${cohort}&v=${__VERSION__}&utm_medium=ext&utm_source=gmptt&utm_campaign=ro${cohort}`,
       });
       return;
     }

@@ -50,6 +50,9 @@ module.exports = (env) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        __VERSION__: JSON.stringify(process.env.npm_package_version),
+      }),
       new CleanWebpackPlugin(),
       new CopyWebpackPlugin({
         patterns: [
