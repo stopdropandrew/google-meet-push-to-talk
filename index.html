@@ -282,7 +282,7 @@
         url = new URL(e.href);
         const params = new URLSearchParams(window.location.search);
         params.forEach(function(value, key) {
-          url.searchParams.set(value, key)
+          url.searchParams.set(key, value)
         });
         url.searchParams.set("g", "0");
         url.searchParams.set("utm_content", "t0");
