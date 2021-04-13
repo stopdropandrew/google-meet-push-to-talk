@@ -284,8 +284,9 @@
         params.forEach(function(value, key) {
           url.searchParams.set(key, value)
         });
-        url.searchParams.set("g", "0");
-        url.searchParams.set("utm_content", "t0");
+        url.searchParams.set("utm_source", "gmptt");
+        url.searchParams.set("utm_medium", "referral")
+        url.searchParams.set("utm_campaign", "launch")
         e.href = url.href;
       });
     </script>
