@@ -53,7 +53,7 @@ const launchRolloutTabIfNeeded = async (reason) => {
     const rolloutValue = overrideRolloutValue || (await getOrSetRolloutValue());
     const cohort =
       reason === "install"
-        ? 0
+        ? -1
         : findRolloutCohort(launchRolloutCohorts, rolloutValue);
     log({ cohort, rolloutValue, launchUrl, launchRolloutCohorts });
     if (cohort >= 0) {
