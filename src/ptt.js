@@ -19,19 +19,24 @@ const MIC_ON = {
 let currentHotkey, keydownToggle, keyupToggle;
 
 const currentLanguage = () => document.documentElement.lang;
-const micButtonSelector = (tip) => `[data-tooltip*='${tip}']`;
+const oldMicButtonSelector = (tip) => `[data-tooltip*='${tip}']`;
+const micButtonSelector = (tip) => `[aria-label*='${tip}']`;
 
 const offButtonSelector = () =>
   [
+    "[data-is-muted=false][aria-label*='+ d']",
     "[data-is-muted=false][data-tooltip*='+ d']",
     micButtonSelector(MIC_OFF[currentLanguage()]),
+    oldMicButtonSelector(MIC_OFF[currentLanguage()]),
   ].join(",");
 const offButton = () => document.querySelector(offButtonSelector());
 
 const onButtonSelector = () =>
   [
+    "[data-is-muted=true][aria-label*='+ d']",
     "[data-is-muted=true][data-tooltip*='+ d']",
     micButtonSelector(MIC_ON[currentLanguage()]),
+    oldMicButtonSelector(MIC_ON[currentLanguage()]),
   ].join(",");
 const onButton = () => document.querySelector(onButtonSelector());
 
