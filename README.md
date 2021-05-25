@@ -33,6 +33,10 @@ We don't store your data, period.
 
 ## 📦 CHANGELOG
 
+### v3.0.0 - 2021-05-24
+
+- Add support for upcoming Meet design refresh
+
 ### v2.0.3 - 2021-04-10
 
 - Delay and retry mute on join due to Meet changing underlying behavior
